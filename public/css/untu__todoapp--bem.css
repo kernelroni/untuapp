@@ -1,0 +1,138 @@
+body{
+    font-family: 'Roboto', sans-serif;
+    background: #FFFFFF;
+}
+#untu .untu__topbar{
+    background-color:#1178E2;
+    background: #1178E2;
+    height:100px;
+    display: grid;
+    align-content:center;
+}
+
+#untu .untu__title{
+    text-align: center;
+    color:white;
+    font-weight: 700;
+    font-size: 26px;
+}
+
+.untuform{
+    display:grid;
+    grid-template-columns: 1fr 50px;
+    grid-gap: 10px;
+    margin-top:120px;
+}
+
+.untuform .untoform__input{
+    height:50px;
+    background: #D6EAFF;
+    border-radius: 10px;
+    border:none;
+    font-size: 16px;
+    font-weight: 700;
+    padding-left: 10px;
+}
+.untuform .untoform__input:focus-visible{
+    outline: none;
+}
+
+.untuform .nutoform__addtodo{
+    height:50px;
+    width:50px;
+    background: #D6EAFF;
+    border-radius: 10px;
+    border:none;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.todos__container{
+    height: 300px;
+    overflow-y: auto;
+    margin-top:50px;
+    margin-bottom: 30px;
+}
+
+
+.todos {
+    list-style-type: none;
+    padding: 0px;
+    margin:0px;
+}
+
+.todos .todos__item{
+    display:grid;
+    grid-template-columns: 50px 1fr 50px;
+    grid-gap: 10px;
+    align-items: center;
+    margin-top: 10px;
+}
+.todos .todos__item .todos__item__el{
+    border-radius: 10px;
+    height: 50px;
+}
+.todos .todos__item .todos__item__label {
+    border: none;
+    background:rgb(240, 247, 255);
+    font-size: 16px;
+    font-weight: 700;
+    display: grid;
+    align-items: center;
+    padding-left: 10px;
+}
+
+.todos .todos__item .todos__item__check { 
+    border: 1px solid #707070;
+    display: inline-block;
+    width:50px;
+    background: #FFFFFF;
+}
+
+.todos .todos__item .todos__item__delete { 
+    border: 1px solid #707070;
+    display: inline-block;
+    width:50px;
+    background: #FFFFFF;  
+}
+
+.todos .todos__item .todos__item__check--active{
+    background: #1178E2;
+}
+
+.cta{
+    display: grid;
+    grid-gap : 10px;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    text-align: left;
+}
+.cta .cta__btn{
+    height:50px;
+    width : 112px;
+    background: #D6EAFF;
+    font-size: 20px;
+    font-weight: 700;
+    border:none;
+}
+
+
+
+
+@media (max-width: 575.98px) { 
+
+    .untuform{
+        margin-top:20px;
+    }
+    .todos__container{
+        margin-top: 20px;
+    }
+
+    .cta{
+        grid-template-columns: 1fr;
+        width:100%;
+    }
+
+    .cta .cta__btn{
+        width:100%;
+    }
+ }

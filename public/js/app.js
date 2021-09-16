@@ -2170,6 +2170,9 @@ function Todos(props) {
           children: task.task
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
           className: "todos__item__delete todos__item__el",
+          onClick: function onClick() {
+            props.untuFunctions.deleteTask(index, task);
+          },
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
             src: "/images/x.svg"
           })
@@ -2236,7 +2239,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 function Untuapp() {
-  var delete_time = 5; // in minute
+  var delete_time = 10; // in minute
 
   var delete_time_ms = delete_time * 60 * 1000;
 
@@ -2250,8 +2253,18 @@ function Untuapp() {
       updateCount = _useState4[0],
       setTotalUpdateCount = _useState4[1];
 
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(true),
+      _useState6 = _slicedToArray(_useState5, 2),
+      loading = _useState6[0],
+      showLoading = _useState6[1];
+
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(0),
+      _useState8 = _slicedToArray(_useState7, 2),
+      counter = _useState8[0],
+      setcounter = _useState8[1];
+
   var taskInput = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)(null);
-  var propObject = {};
+  var propObject = {}; // load data from database for the first time when page load.
 
   function loadData() {
     _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
@@ -2260,7 +2273,6 @@ function Untuapp() {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              // POST request using axios with async/await
               data = {};
               data.action = "loaddata";
               data.active = true;
@@ -2270,26 +2282,56 @@ function Untuapp() {
             case 5:
               response = _context.sent;
               rows = response.data;
+              showLoading(false);
               setTask(rows);
 
-            case 8:
+            case 9:
             case "end":
               return _context.stop();
           }
         }
       }, _callee);
     }))();
-  }
+  } // load all task on page load
+
 
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
-    loadData();
-  }, []);
+    console.log("Load data from db");
+    loadData(); // this interval will check if a task is already reached to its life - 5 min 
+
+    setInterval(function () {
+      setcounter(function (previousCount) {
+        return previousCount + 1;
+      });
+    }, 10000);
+  }, []); // this hook will invoke when the counter state is updated. from previous setinterval call.
+
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
+    checkTaskLifeAndDelete();
+  }, [counter]);
+
+  function checkTaskLifeAndDelete() {
+    var currentTimeInMS = new Date().getTime();
+    var deletingItems = [];
+    var endingTasks = tasks.forEach(function (task, index) {
+      var item = {};
+
+      if (task.delete_time < currentTimeInMS) {
+        item.index = index;
+        item.task = task;
+        deletingItems.push(item);
+      }
+    });
+
+    if (deletingItems.length) {
+      deletingItems.forEach(function (item) {
+        propObject.deleteTask(item.index, item.task, false);
+      });
+    }
+  }
 
   propObject.onCompleteTask = function (index, task) {
-    console.log({
-      index: index,
-      task: task
-    });
+    //console.log({index, task});
     task.complete = !task.complete;
     tasks[index] = task;
     setTask(function (previousTasks) {
@@ -2301,11 +2343,100 @@ function Untuapp() {
   };
 
   propObject.saveTasks = function () {
-    var updatedTask = tasks.filter(function (task) {
-      return task.complete;
-    });
+    // var updatedTask = tasks.filter(function(task){
+    //     return task.complete;
+    // });
+    _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+      var data, response, rows;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              // POST request using axios with async/await
+              data = {};
+              data.action = "save";
+              data.tasks = tasks;
+              _context2.next = 5;
+              return axios.post('/ajax', data);
+
+            case 5:
+              response = _context2.sent;
+              rows = response.data;
+              showLoading(false);
+
+            case 8:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }))();
+
     console.log(updatedTask);
   };
+
+  propObject.loadTasks = function () {
+    showLoading(true);
+    loadData();
+  };
+
+  propObject.clearTasks = function () {
+    var yes = confirm("Do you want to clear all items ?");
+
+    if (yes) {
+      deleteOrClear("all");
+      setTask([]);
+    }
+  };
+
+  propObject.deleteTask = function (index, task) {
+    var alert = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
+    var yes = false;
+
+    if (alert) {
+      yes = confirm("Do you want to delete this item ?");
+    }
+
+    if (yes || !alert) {
+      deleteOrClear(task.id);
+      tasks.splice(index, 1); //delete tasks[index];
+
+      setTask(function (previousTasks) {
+        setTotalUpdateCount(function (previousCount) {
+          return previousCount + 1;
+        });
+        return tasks;
+      });
+    }
+  };
+
+  function deleteOrClear(taskid) {
+    _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
+      var data, response, rows;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              // POST request using axios with async/await
+              data = {};
+              data.action = "delete";
+              data.id = taskid;
+              _context3.next = 5;
+              return axios.post('/ajax', data);
+
+            case 5:
+              response = _context3.sent;
+              rows = response.data;
+              showLoading(false);
+
+            case 8:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, _callee3);
+    }))();
+  }
 
   function addTask() {
     var task = taskInput.current.value.trim();
@@ -2325,21 +2456,21 @@ function Untuapp() {
       delete_time: uniqueId + delete_time_ms
     };
 
-    _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+    _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4() {
       var data, response, row;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
         while (1) {
-          switch (_context2.prev = _context2.next) {
+          switch (_context4.prev = _context4.next) {
             case 0:
               // POST request using axios with async/await
               data = {};
               data.action = "addtask";
               data.item = item;
-              _context2.next = 5;
+              _context4.next = 5;
               return axios.post('/ajax', data);
 
             case 5:
-              response = _context2.sent;
+              response = _context4.sent;
               item.id = response.id;
               row = response.data;
               setTask(function (previousTasks) {
@@ -2349,49 +2480,64 @@ function Untuapp() {
 
             case 9:
             case "end":
-              return _context2.stop();
+              return _context4.stop();
           }
         }
-      }, _callee2);
+      }, _callee4);
     }))();
   }
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-      className: "untuform",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
-        type: "text",
-        className: "untoform__input",
-        ref: taskInput
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
-        className: "nutoform__addtodo",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
-          src: _images_plus_svg__WEBPACK_IMPORTED_MODULE_3__["default"],
-          onClick: addTask
-        })
-      })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-      className: "todos__container",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Todos__WEBPACK_IMPORTED_MODULE_4__["default"], {
-        tasks: tasks,
-        untuFunctions: propObject,
-        updateCount: updateCount
+  if (loading) {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+      className: "loadingapp",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+          className: "loader"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+          children: "Loading..."
+        })]
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-      className: "cta",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
-        className: "cta__btn cta__btn__save",
-        onClick: propObject.saveTasks,
-        children: "Save"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
-        className: "cta__btn cta__btn__load",
-        children: "Load"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
-        className: "cta__btn cta__btn__clear",
-        children: "Clear"
+    });
+  } else {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+        className: "untuform",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
+          type: "text",
+          className: "untuform__input",
+          ref: taskInput
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
+          className: "untuform__addtodo",
+          onClick: addTask,
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
+            src: _images_plus_svg__WEBPACK_IMPORTED_MODULE_3__["default"]
+          })
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+        className: "todos__container",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Todos__WEBPACK_IMPORTED_MODULE_4__["default"], {
+          tasks: tasks,
+          untuFunctions: propObject,
+          updateCount: updateCount
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+        className: "cta",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
+          className: "cta__btn cta__btn__save",
+          onClick: propObject.saveTasks,
+          children: "Save"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
+          className: "cta__btn cta__btn__load",
+          onClick: propObject.loadTasks,
+          children: "Load"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
+          className: "cta__btn cta__btn__clear",
+          onClick: propObject.clearTasks,
+          children: "Clear"
+        })]
       })]
-    })]
-  });
+    });
+  }
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Untuapp);
@@ -6854,7 +7000,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/plus.svg?8e14d3fbb6fd40cc6d9cb8f9b473a48d");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/plus.svg?a3bd688dc86740e48178603d543e35be");
 
 /***/ }),
 

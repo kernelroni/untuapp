@@ -19,7 +19,11 @@ function Todos(props) {
             <img src="/images/check.svg" />
             </button>
         <div className="todos__item__label todos__item__el">{task.task}</div>
-        <button className="todos__item__delete todos__item__el"><img src="/images/x.svg" /></button>
+        <button className="todos__item__delete todos__item__el"
+        onClick={()=>{
+            props.untuFunctions.deleteTask(index, task);
+        }}
+        ><img src="/images/x.svg" /></button>
         </li>
 
         })}

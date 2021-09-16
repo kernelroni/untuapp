@@ -24,7 +24,7 @@ body{
     margin-top:120px;
 }
 
-.untuform .untoform__input{
+.untuform .untuform__input{
     height:50px;
     background: #D6EAFF;
     border-radius: 10px;
@@ -33,11 +33,11 @@ body{
     font-weight: 700;
     padding-left: 10px;
 }
-.untuform .untoform__input:focus-visible{
+.untuform .untuform__input:focus-visible{
     outline: none;
 }
 
-.untuform .nutoform__addtodo{
+.untuform .untuform__addtodo{
     height:50px;
     width:50px;
     background: #D6EAFF;
@@ -115,6 +115,42 @@ body{
     border:none;
 }
 
+.loadingapp{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    display: grid;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    text-align: center;
+    background: rgba(200,200,200,.5);
+    font-size:20px;
+    color:#1278E2;
+}
+
+.loader {
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 2s linear infinite;
+    margin:auto;
+  }
+  
+  /* Safari */
+  @-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
 
 
 

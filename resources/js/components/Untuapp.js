@@ -7,7 +7,7 @@ import Todos from "./Todos"
 
 function Untuapp() {
 
-    const delete_time = 10; // in minute
+    const delete_time = 5; // in minute
     const delete_time_ms = delete_time * 60 * 1000;
 
     const [tasks, setTask] = useState([]);

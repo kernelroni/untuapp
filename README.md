@@ -2,12 +2,17 @@
 
 untu todo app laravel - reactjs
 
+Guest can add todo 
+
+
 ## Features and componenet. ( React js part)
-1. Add todo. ( Guest or user todo)
-2. Save todo
-3. Delete todo
-4. Clear all todo
-5. React js componenets 
+*. Add todo. ( Guest or user todo)
+*. Todo will be deleted autometically in 5 Minutes after its created.
+*. Save todo ( Complete status check/uncheck will be saved)
+*. Delete todo
+*. Load all todos
+*. Clear all todo
+*. React js componenets 
     a. Untoapp - Parent componenet.
     b. Todo input component
     c. Todos component
@@ -27,23 +32,25 @@ Need laravel latest, MySQL and reactjs latest.
 Clone the repo first. Go to the project folder then execute the commnads below. 
 
 ```bash
-1 - clone this repo
-2 - composer require laravel/ui
-3 - composer install
-4 - php artisan ui bootstrap --auth
-5 - npm install
-6 - npm run dev
-7 - php artisan ui:auth
-8 - php artisan ui react 
-9 - php artisan migrate
-10 - Add the tasks table into your db.
+* - clone this repo
+* - composer install
+* - npm install
+* - php artisan migrate 
+* - npm run dev
+* - Add the tasks table into your db.
 ```
 
 ## Dev server
 
 ```php
-php artisan serve --port=80
+php artisan serve --port=81
 ```
+
+## User login / Register
+http://127.0.0.1:81/ - App view
+http://127.0.0.1:81/todo - App view
+http://127.0.0.1:81/login - user login 
+http://127.0.0.1:81/register - user registration
 
 ## Video
 

@@ -9,7 +9,7 @@ untu todo app laravel - reactjs
 4. Clear all todo
 5. React js componenets 
     a. Untoapp - Parent componenet.
-    b. Form input component
+    b. Todo input component
     c. Todos component
     d. Header componenet
     e. Loader componenet
@@ -29,7 +29,7 @@ Clone the repo first. Go to the project folder then execute the commnads below.
 ```bash
 1 - clone this repo
 2 - composer require laravel/ui
-3 - php composer.phar update
+3 - composer install
 4 - php artisan ui bootstrap --auth
 5 - npm install
 6 - npm run dev
@@ -39,10 +39,17 @@ Clone the repo first. Go to the project folder then execute the commnads below.
 10 - Add the tasks table into your db.
 ```
 
-## Usage
+## Dev server
 
 ```php
-
+php artisan serve --port=80
 ```
+
+## Video
+
+
+
+
+
 
 

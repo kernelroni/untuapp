@@ -15,7 +15,7 @@ function Untuapp() {
 
     const [tasks, setTask] = useState([]); // list of all todos and set todos
     const [updateCount, setTotalUpdateCount] = useState(0);
-    const [loading, showLoading] = useState(true);
+    const [loading, showLoading] = useState(true); // default show loading overlay - when page url hit
     const [counter, setCounter] = useState(0);
     const taskInput = useRef(null);
 
@@ -32,7 +32,7 @@ function Untuapp() {
             var response = await axios.post('/ajax', data);
             var rows = response.data;
             showLoading(false);
-            setTask(rows);
+            setTask(rows); // set all tasks from db to the tasks state.
 
         })();
     }

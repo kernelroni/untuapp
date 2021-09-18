@@ -49,11 +49,12 @@ php artisan serve --port=81
 ```
 
 ## User login / Register
+```bash
 http://127.0.0.1:81/ - App view
 http://127.0.0.1:81/todo - App view
 http://127.0.0.1:81/login - user login 
 http://127.0.0.1:81/register - user registration
-
+```
 ## Video
 
 

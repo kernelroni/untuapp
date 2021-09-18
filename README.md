@@ -2,10 +2,12 @@
 
 untu todo app laravel - reactjs
 
-Guest can add todo 
+Guest can add todo - Guest = Visitor without login.
+User can add his/her own todos after login. User will see and can take action on their own todo only.
 
 
 ## Features and componenet. ( React js part)
+```bash
 *. Add todo. ( Guest or user todo)
 *. Todo will be deleted autometically in 5 Minutes after its created.
 *. Save todo ( Complete status check/uncheck will be saved)
@@ -19,7 +21,7 @@ Guest can add todo
     d. Header componenet
     e. Loader componenet
     f. Cta Componenet [ Save, Load, Clear buttons]
-
+```
 ## Laravel parts
 1. Routes
 2. TodoControllers

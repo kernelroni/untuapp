@@ -34,8 +34,8 @@ class TodoController extends Controller
     public function ajax(Request $request){
 
         $action = $request->get("action","");
-        if($action == "save"){
 
+        if($action == "save"){
 
             $tasks = $request->get("tasks");
             foreach($tasks as $task){
@@ -84,10 +84,8 @@ class TodoController extends Controller
                 $task = Task::find($taskId);
                 if($task){
                     $task->delete();
-                }
-                
-               
-            }else{
+                }               
+            }else if($taskId == "all"){
                 Task::truncate();
             }
             

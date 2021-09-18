@@ -1,19 +1,22 @@
 import React, { useState, useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
-import PlusIcon from '../../images/plus.svg';
 
+
+import Header from "./Header"
+import Todoinput from "./Todoinput"
 import Todos from "./Todos"
-
+import Cta from "./Cta"
+import Loader from "./Loader"
 
 function Untuapp() {
 
-    const delete_time = 5; // in minute
-    const delete_time_ms = delete_time * 60 * 1000;
+    const delete_time = 5; // todo will delete autometically after 5 min.
+    const delete_time_ms = delete_time * 60 * 1000; // 5 min in milliseconds
 
-    const [tasks, setTask] = useState([]);
+    const [tasks, setTask] = useState([]); // list of all todos and set todos
     const [updateCount, setTotalUpdateCount] = useState(0);
     const [loading, showLoading] = useState(true);
-    const [counter, setcounter] = useState(0);
+    const [counter, setCounter] = useState(0);
     const taskInput = useRef(null);
 
     var propObject = {};
@@ -32,8 +35,6 @@ function Untuapp() {
             setTask(rows);
 
         })();
-
-
     }
 
     // load all task on page load
@@ -43,12 +44,13 @@ function Untuapp() {
 
         // this interval will check if a task is already reached to its life - 5 min 
         setInterval(()=>{
-            setcounter(previousCount => previousCount + 1);
+            setCounter(previousCount => previousCount + 1);
         },10000);
 
     },[]);
 
     // this hook will invoke when the counter state is updated. from previous setinterval call.
+    // and will check the 5 min life time for a todo and delete that todo item.
     useEffect(() => {
         checkTaskLifeAndDelete();
     },[counter]);
@@ -68,11 +70,12 @@ function Untuapp() {
                 item.index = index;
                 item.task = task;
 
-                deletingItems.push(item);
+                deletingItems.push(item); // this todo already exceed 5 min duration as life time.
             }
         });
         if(deletingItems.length){
             deletingItems.forEach(function(item){
+                // delete todo that exceed 5 min duration.
                 propObject.deleteTask(item.index, item.task, false);
             });
         }
@@ -81,14 +84,18 @@ function Untuapp() {
 
     propObject.onCompleteTask = function(index, task){
 
-        //console.log({index, task});
-
+        // update the check box for todo - is it completed ?
         task.complete = !task.complete;
-        tasks[index] = task;
-
+        tasks[index] = task; // replace the old todo item.
         
+
+        // reset tasks 
         setTask(previousTasks => {
+
+            // hack start - this state change is a hack - sometime changing the complete status of a todo - do not effect immediately in UI. thats why changing a state variable will re-render the component. and check uncheck will reflect in ui immediately. 
             setTotalUpdateCount(previousCount => previousCount + 1);
+            // hack end
+
             return tasks;
         });
     }
@@ -98,7 +105,7 @@ function Untuapp() {
         // var updatedTask = tasks.filter(function(task){
         //     return task.complete;
         // });
-
+        showLoading(true);
         (async () => {
             // POST request using axios with async/await
             var data = {};
@@ -109,9 +116,6 @@ function Untuapp() {
             showLoading(false);
            
         })();
-
-        console.log(updatedTask);
-
 
     }
 
@@ -175,14 +179,13 @@ function Untuapp() {
             return;
         }
 
-      var uniqueId = new Date().getTime(); // time in milliseconds. 
+      var currentTimeInMS = new Date().getTime(); // time in milliseconds. 
       var item = {
-            id: uniqueId,
-            task_id : uniqueId,
+            task_id : currentTimeInMS,
             task : task,
             complete : false,
-            create_time : uniqueId,
-            delete_time : uniqueId + delete_time_ms
+            create_time : currentTimeInMS,
+            delete_time : currentTimeInMS + delete_time_ms
 
         };
 
@@ -207,40 +210,24 @@ function Untuapp() {
 
     }
 
-    if(loading){
         return (
-            <div className="loadingapp">
-                <div>
-                <div className="loader"></div>
-                <div>Loading...</div>
-                </div>
-            </div>
-        );
-    }else{
-
-        return (
-
             <>
-                        
-                        <div className="untuform">
-                            <input type="text" className="untuform__input" ref={taskInput}  />
-                            <button className="untuform__addtodo" onClick={addTask}><img src={PlusIcon}
-                             /></button>
-                        </div>
+            <div id="untu">
+                <Header />
+                <main className="py-4 container">
+                        <Todoinput addTask={addTask} theRef={taskInput}/>
 
                         <div className="todos__container">
-                        <Todos tasks={tasks} untuFunctions={propObject} updateCount={updateCount}/>
+                        <Todos tasks={tasks} untuFunctions={propObject}/>
                         </div>
-                        <div className="cta">
-                            <button className="cta__btn cta__btn__save" onClick={propObject.saveTasks}>Save</button>
-                            <button className="cta__btn cta__btn__load" onClick={propObject.loadTasks}>Load</button>
-                            <button className="cta__btn cta__btn__clear" onClick={propObject.clearTasks}>Clear</button>
-                        </div>
+                        <Cta untuFunctions={propObject}/>
+                </main>
+            </div>
 
+            {loading && <Loader />}
             </>
-
         );
-    }
+
 }
 
 export default Untuapp;

@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Untu To-Do App</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -23,17 +23,6 @@
     <link href="{{ asset('css/untu__todoapp--bem.css') }}" rel="stylesheet">
 </head>
 <body>
-    <div id="untu">
-        <div class="untu__topbar">
-            
-                <span class="untu__title">
-                    To-Do App
-                </span>           
-        </div>
-
-        <main class="py-4">
-            @yield('content')
-        </main>
-    </div>
+@yield('content')
 </body>
 </html>

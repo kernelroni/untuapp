@@ -2132,6 +2132,150 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
+/***/ "./resources/js/components/Cta.js":
+/*!****************************************!*\
+  !*** ./resources/js/components/Cta.js ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+function Cta(props) {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+    className: "cta",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+      className: "cta__btn cta__btn__save",
+      onClick: props.untuFunctions.saveTasks,
+      children: "Save"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+      className: "cta__btn cta__btn__load",
+      onClick: props.untuFunctions.loadTasks,
+      children: "Load"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+      className: "cta__btn cta__btn__clear",
+      onClick: props.untuFunctions.clearTasks,
+      children: "Clear"
+    })]
+  });
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Cta);
+
+/***/ }),
+
+/***/ "./resources/js/components/Header.js":
+/*!*******************************************!*\
+  !*** ./resources/js/components/Header.js ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+function Header() {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+    className: "untu__topbar",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+      className: "untu__title",
+      children: "To-Do App"
+    })
+  });
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Header);
+
+/***/ }),
+
+/***/ "./resources/js/components/Loader.js":
+/*!*******************************************!*\
+  !*** ./resources/js/components/Loader.js ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+function Loader() {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+    className: "loadingapp",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+        className: "loader"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+        children: "Loading..."
+      })]
+    })
+  });
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Loader);
+
+/***/ }),
+
+/***/ "./resources/js/components/Todoinput.js":
+/*!**********************************************!*\
+  !*** ./resources/js/components/Todoinput.js ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _images_plus_svg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../images/plus.svg */ "./resources/images/plus.svg");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+
+function Todoinput(props) {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+    className: "untuform",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+      type: "text",
+      className: "untuform__input",
+      ref: props.theRef
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+      className: "untuform__addtodo",
+      onClick: props.addTask,
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
+        src: _images_plus_svg__WEBPACK_IMPORTED_MODULE_1__["default"]
+      })
+    })]
+  });
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Todoinput);
+
+/***/ }),
+
 /***/ "./resources/js/components/Todos.js":
 /*!******************************************!*\
   !*** ./resources/js/components/Todos.js ***!
@@ -2150,7 +2294,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function Todos(props) {
-  console.log(props);
+  if (!props.tasks.length) {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+      className: "no-task",
+      children: "Todo list empty."
+    });
+  }
+
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("ul", {
     className: "todos",
     children: props.tasks.map(function (task, index) {
@@ -2201,9 +2351,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var _images_plus_svg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../images/plus.svg */ "./resources/images/plus.svg");
-/* harmony import */ var _Todos__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Todos */ "./resources/js/components/Todos.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _Header__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Header */ "./resources/js/components/Header.js");
+/* harmony import */ var _Todoinput__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Todoinput */ "./resources/js/components/Todoinput.js");
+/* harmony import */ var _Todos__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Todos */ "./resources/js/components/Todos.js");
+/* harmony import */ var _Cta__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Cta */ "./resources/js/components/Cta.js");
+/* harmony import */ var _Loader__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Loader */ "./resources/js/components/Loader.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -2238,15 +2391,19 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-function Untuapp() {
-  var delete_time = 10; // in minute
 
-  var delete_time_ms = delete_time * 60 * 1000;
+
+
+function Untuapp() {
+  var delete_time = 5; // todo will delete autometically after 5 min.
+
+  var delete_time_ms = delete_time * 60 * 1000; // 5 min in milliseconds
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
       _useState2 = _slicedToArray(_useState, 2),
       tasks = _useState2[0],
-      setTask = _useState2[1];
+      setTask = _useState2[1]; // list of all todos and set todos
+
 
   var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(0),
       _useState4 = _slicedToArray(_useState3, 2),
@@ -2261,7 +2418,7 @@ function Untuapp() {
   var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(0),
       _useState8 = _slicedToArray(_useState7, 2),
       counter = _useState8[0],
-      setcounter = _useState8[1];
+      setCounter = _useState8[1];
 
   var taskInput = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)(null);
   var propObject = {}; // load data from database for the first time when page load.
@@ -2300,11 +2457,12 @@ function Untuapp() {
     loadData(); // this interval will check if a task is already reached to its life - 5 min 
 
     setInterval(function () {
-      setcounter(function (previousCount) {
+      setCounter(function (previousCount) {
         return previousCount + 1;
       });
     }, 10000);
   }, []); // this hook will invoke when the counter state is updated. from previous setinterval call.
+  // and will check the 5 min life time for a todo and delete that todo item.
 
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     checkTaskLifeAndDelete();
@@ -2319,25 +2477,30 @@ function Untuapp() {
       if (task.delete_time < currentTimeInMS) {
         item.index = index;
         item.task = task;
-        deletingItems.push(item);
+        deletingItems.push(item); // this todo already exceed 5 min duration as life time.
       }
     });
 
     if (deletingItems.length) {
       deletingItems.forEach(function (item) {
+        // delete todo that exceed 5 min duration.
         propObject.deleteTask(item.index, item.task, false);
       });
     }
   }
 
   propObject.onCompleteTask = function (index, task) {
-    //console.log({index, task});
+    // update the check box for todo - is it completed ?
     task.complete = !task.complete;
-    tasks[index] = task;
+    tasks[index] = task; // replace the old todo item.
+    // reset tasks 
+
     setTask(function (previousTasks) {
+      // hack start - this state change is a hack - sometime changing the complete status of a todo - do not effect immediately in UI. thats why changing a state variable will re-render the component. and check uncheck will reflect in ui immediately. 
       setTotalUpdateCount(function (previousCount) {
         return previousCount + 1;
-      });
+      }); // hack end
+
       return tasks;
     });
   };
@@ -2346,6 +2509,8 @@ function Untuapp() {
     // var updatedTask = tasks.filter(function(task){
     //     return task.complete;
     // });
+    showLoading(true);
+
     _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
       var data, response, rows;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
@@ -2371,8 +2536,6 @@ function Untuapp() {
         }
       }, _callee2);
     }))();
-
-    console.log(updatedTask);
   };
 
   propObject.loadTasks = function () {
@@ -2445,15 +2608,14 @@ function Untuapp() {
       return;
     }
 
-    var uniqueId = new Date().getTime(); // time in milliseconds. 
+    var currentTimeInMS = new Date().getTime(); // time in milliseconds. 
 
     var item = {
-      id: uniqueId,
-      task_id: uniqueId,
+      task_id: currentTimeInMS,
       task: task,
       complete: false,
-      create_time: uniqueId,
-      delete_time: uniqueId + delete_time_ms
+      create_time: currentTimeInMS,
+      delete_time: currentTimeInMS + delete_time_ms
     };
 
     _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4() {
@@ -2487,63 +2649,32 @@ function Untuapp() {
     }))();
   }
 
-  if (loading) {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-      className: "loadingapp",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-          className: "loader"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-          children: "Loading..."
-        })]
-      })
-    });
-  } else {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-        className: "untuform",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
-          type: "text",
-          className: "untuform__input",
-          ref: taskInput
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
-          className: "untuform__addtodo",
-          onClick: addTask,
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
-            src: _images_plus_svg__WEBPACK_IMPORTED_MODULE_3__["default"]
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+      id: "untu",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Header__WEBPACK_IMPORTED_MODULE_3__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("main", {
+        className: "py-4 container",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Todoinput__WEBPACK_IMPORTED_MODULE_4__["default"], {
+          addTask: addTask,
+          theRef: taskInput
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
+          className: "todos__container",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Todos__WEBPACK_IMPORTED_MODULE_5__["default"], {
+            tasks: tasks,
+            untuFunctions: propObject
           })
-        })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-        className: "todos__container",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Todos__WEBPACK_IMPORTED_MODULE_4__["default"], {
-          tasks: tasks,
-          untuFunctions: propObject,
-          updateCount: updateCount
-        })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-        className: "cta",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
-          className: "cta__btn cta__btn__save",
-          onClick: propObject.saveTasks,
-          children: "Save"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
-          className: "cta__btn cta__btn__load",
-          onClick: propObject.loadTasks,
-          children: "Load"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
-          className: "cta__btn cta__btn__clear",
-          onClick: propObject.clearTasks,
-          children: "Clear"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Cta__WEBPACK_IMPORTED_MODULE_6__["default"], {
+          untuFunctions: propObject
         })]
       })]
-    });
-  }
+    }), loading && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Loader__WEBPACK_IMPORTED_MODULE_7__["default"], {})]
+  });
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Untuapp);
 
 if (document.getElementById('untuapp')) {
-  react_dom__WEBPACK_IMPORTED_MODULE_2__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(Untuapp, {}), document.getElementById('untuapp'));
+  react_dom__WEBPACK_IMPORTED_MODULE_2__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(Untuapp, {}), document.getElementById('untuapp'));
 }
 
 /***/ }),

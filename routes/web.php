@@ -19,5 +19,4 @@ Auth::routes();
 Route::get('/', [App\Http\Controllers\TodoController::class, 'index'])->name('todo');
 Route::get('/todo', [App\Http\Controllers\TodoController::class, 'index'])->name('todo');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 Route::any('/ajax', [App\Http\Controllers\TodoController::class, 'ajax'])->name('ajax');

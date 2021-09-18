@@ -77,15 +77,16 @@ class TodoController extends Controller
             return Task::where("user_id",$userId)->get();
             // load all todo
         }else if($action == "delete"){
+            // delete by id or clear all rows.
             $result = [];
             $result['success'] = true;
             $taskId = $request->get("id");
             if($taskId > 0){
                 $task = Task::find($taskId);
                 if($task){
-                    $task->delete();
+                    $task->delete(); // delete individual todo
                 }               
-            }else if($taskId == "all"){
+            }else if($taskId == "all"){ // delete all rows
                 Task::truncate();
             }
             

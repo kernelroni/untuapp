@@ -10,7 +10,7 @@ import Loader from "./Loader"
 
 function Untuapp() {
 
-    const delete_time = 5; // todo will delete autometically after 5 min.
+    const delete_time = 5; // todo will be deleted autometically after 5 min.
     const delete_time_ms = delete_time * 60 * 1000; // 5 min in milliseconds
 
     const [tasks, setTask] = useState([]); // list of all todos and set todos
@@ -102,9 +102,6 @@ function Untuapp() {
 
     propObject.saveTasks = function(){
 
-        // var updatedTask = tasks.filter(function(task){
-        //     return task.complete;
-        // });
         showLoading(true);
         (async () => {
             // POST request using axios with async/await
@@ -135,6 +132,7 @@ function Untuapp() {
 
     }
 
+    // on delete icon click for a todo item
     propObject.deleteTask = function(index, task, alert = true){
 
         var yes = false ;
@@ -152,6 +150,7 @@ function Untuapp() {
         }
     }
 
+    // delete todo by id or delete all todos
     function deleteOrClear(taskid){
 
         (async () => {
@@ -168,10 +167,7 @@ function Untuapp() {
 
     }
 
-
-
-
-
+    // add a single todo
     function addTask(){
 
         var task = taskInput.current.value.trim();

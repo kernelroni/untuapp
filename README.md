@@ -40,6 +40,7 @@ Clone the repo first. Go to the project folder then execute the commnads below.
 * - php artisan migrate 
 * - npm run dev
 * - Add the tasks table into your db.
+* - Database files : sql-dump/untu.sql and sql-dump/tasks.sql
 ```
 
 ## Dev server

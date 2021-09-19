@@ -35,6 +35,12 @@ class TodoController extends Controller
 
         $action = $request->get("action","");
 
+        $userId = 0; // guest - default
+        $user = Auth::user();
+        if($user){
+            $userId = $user->id;
+        }     
+
         if($action == "save"){
 
             $tasks = $request->get("tasks");
@@ -46,12 +52,6 @@ class TodoController extends Controller
             return $tasks;
 
         }else if($action == "addtask"){
-
-            $userId = 0; // guest - default
-            $user = Auth::user();
-            if($user){
-                $userId = $user->id;
-            }
 
             $item = $request->get("item");
 
@@ -68,12 +68,6 @@ class TodoController extends Controller
             return $task;
         }else if($action == "loaddata"){
 
-            $userId = 0; // guest - default
-            $user = Auth::user();
-            if($user){
-                $userId = $user->id;
-            }
-            
             return Task::where("user_id",$userId)->get();
             // load all todo
         }else if($action == "delete"){
@@ -86,8 +80,8 @@ class TodoController extends Controller
                 if($task){
                     $task->delete(); // delete individual todo
                 }               
-            }else if($taskId == "all"){ // delete all rows
-                Task::truncate();
+            }else if($taskId == "all"){ // delete all todos
+                Task::where("user_id",$userId)->delete();
             }
             
             return $result;
